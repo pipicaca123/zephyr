@@ -93,3 +93,8 @@ Nits.txt
 Pylint.txt
 SphinxLint.txt
 YAMLLint.txt
+
+
+# custom
+CMakeFiles/*
+CMakeCache.txt
