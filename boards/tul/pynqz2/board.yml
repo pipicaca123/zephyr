@@ -1,0 +1,5 @@
+board:
+  name: pynqz2
+  vendor: tul
+  socs:
+    - name: xc7z020

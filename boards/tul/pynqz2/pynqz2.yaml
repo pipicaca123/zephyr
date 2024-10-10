@@ -1,0 +1,15 @@
+# Copyright (c) 2022 Henrik Brix Andersen <henrik@brixandersen.dk>
+# SPDX-License-Identifier: Apache-2.0
+
+identifier: pynqz2
+name: Tul PynqZ2
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 524288
+supported:
+  - gpio
+vendor: tul
