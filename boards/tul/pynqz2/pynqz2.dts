@@ -90,14 +90,28 @@
 	};
 
 	uartlite0: uartlite@42c00000 {
+		// TODO: interrupt bring up
 		compatible = "xlnx,xps-uartlite-1.00.a";
+		status = "okay";
 		reg = <0x42c00000 0x10000>;
-		// current-speed = <115200>; // TODO: modify this
+		current-speed = <115200>;
+		clock-frequency = <100000000>;
 		interrupt-parent = <&gic>;
-		interrupts = <GIC_SPI 31 IRQ_TYPE_EDGE IRQ_DEFAULT_PRIORITY>;
+		interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL IRQ_DEFAULT_PRIORITY>;
 		interrupt-names = "irq_0";
 	};
 
+	uart16550_0: uart16550@43c00000 {
+		compatible = "ns16550";
+		status = "okay";
+		reg = <0x43c00000 0x10000>;
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL IRQ_DEFAULT_PRIORITY>;
+		current-speed = <115200>;
+		clock-frequency = <100000000>;
+		interrupt-names = "irq_0";
+		reg-shift = <2>; // aligned to 32bits system
+	};
 };
 
 &uart0 {
