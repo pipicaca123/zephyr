@@ -101,13 +101,13 @@ int main(void)
 		printf("Failed to configure GPIO pin %d\n", GPIO_PIN_0);
 		return;
 	}
-	ret = gpio_pin_interrupt_configure(gpio_btns_dev,GPIO_PIN_0, GPIO_INT_EDGE_TO_ACTIVE);
+	ret = gpio_pin_interrupt_configure(gpio_btns_dev,GPIO_PIN_0, GPIO_INT_EDGE_RISING);
 	if (ret != 0) {
 		printk("Error %d: failed to configure interrupt on gpio_btns\n",
 			ret);
 		return 0;
 	}
-	gpio_init_callback(&button_cb_data, button_pressed, BIT(GPIO_PIN_0));
+	gpio_init_callback(&button_cb_data, button_pressed, 0xFFFF);
 	gpio_add_callback(gpio_btns_dev,&button_cb_data);
 	// uart
 	if (!device_is_ready(uart0_dev)) {
@@ -155,5 +155,7 @@ int main(void)
 		k_msleep(500);
 	}
 	printf("test ended.\r\n");
+
+	while(1){}
 	return 0;
 }
