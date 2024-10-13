@@ -26,9 +26,9 @@
 	};
 
 	aliases {
-	// 	led0 = &ld_mio;
-	// 	sw0 = &btn4;
-	// 	sw1 = &btn5;
+		//     led0 = &ld_mio;
+		//     sw0 = &btn4;
+		//     sw1 = &btn5;
 	};
 
 	cpus {
@@ -53,12 +53,12 @@
 		reg = <0x100000 DT_SIZE_M(512)>;
 	};
 
-	axi_gpio_btns: axi_gpio@41200000{
+	axi_gpio_btns: axi_gpio@41200000 {
 		compatible = "xlnx,xps-gpio-1.00.a";
 		status = "okay";
 		reg = <0x41200000 0x10000>;
 		interrupt-parent = <&gic>;
-		interrupts = < GIC_SPI 29 IRQ_TYPE_EDGE IRQ_DEFAULT_PRIORITY >;
+		interrupts = <GIC_SPI 29 IRQ_TYPE_EDGE IRQ_DEFAULT_PRIORITY>;
 		gpio-controller;
 		#gpio-cells = <2>;
 		xlnx,all-outputs = <0>;
@@ -72,7 +72,7 @@
 		xlnx,tri-default-2 = <0xFFFFFFFF>;
 	};
 
-	axi_gpio_leds: axi_gpio@41210000{
+	axi_gpio_leds: axi_gpio@41210000 {
 		compatible = "xlnx,xps-gpio-1.00.a";
 		status = "okay";
 		reg = <0x41210000 0x10000>;
@@ -87,6 +87,15 @@
 		xlnx,is-dual = <0>;
 		xlnx,tri-default = <0xFFFFFFFF>;
 		xlnx,tri-default-2 = <0xFFFFFFFF>;
+	};
+
+	uartlite0: uartlite@42c00000 {
+		compatible = "xlnx,xps-uartlite-1.00.a";
+		reg = <0x42c00000 0x10000>;
+		// current-speed = <115200>; // TODO: modify this
+		interrupt-parent = <&gic>;
+		interrupts = <GIC_SPI 31 IRQ_TYPE_EDGE IRQ_DEFAULT_PRIORITY>;
+		interrupt-names = "irq_0";
 	};
 
 };
